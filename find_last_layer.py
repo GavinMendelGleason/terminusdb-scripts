@@ -70,10 +70,23 @@ for f in commit_graph:
     value_dict = f'{f}/value_dictionary_blocks.pfc'
     res = open(value_dict,'rb')
     line = res.read()
-    matchobj = re.match(b'.*(159.*)"\^\^\'http://www.w3.org/2001/XMLSchema#decimal\'', line)
+    matchobj = re.match(b'.*(159\d+\.\d+)"\^\^\'http://www.w3.org/2001/XMLSchema#decimal\'', line)
     if matchobj:
         timestamp_str = matchobj.group(1)
         commit_dict[f] = float(timestamp_str)
-        print(f"Time: {timestamp}")
 
-print(len(optimum_commit))
+sorted_commits = {k: v for k, v in sorted(commit_dict.items(), key=lambda item: item[1])}
+v_last = None
+deltas = []
+for k,v in sorted_commits.items():
+    if v_last == None:
+        v_last = v
+    else:
+        delta = v - v_last
+        v_last = v
+        deltas.append((k,delta))
+
+for (ref,delta) in deltas:
+    if delta > 50:
+        print((ref,delta))
+
