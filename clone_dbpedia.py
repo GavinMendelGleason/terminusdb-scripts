@@ -52,3 +52,7 @@ client.checkout('main')
 client.rebase({"rebase_from": f'{user}/{new_db}/local/branch/properties',
                "author": user,
                "message": "Merging types into main"})
+
+result = client.squash('Squash commit of properties and types')
+client.checkout('main')
+client.reset(result['api:commit'])
