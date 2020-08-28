@@ -168,11 +168,11 @@ report_total([total])
 print("Rebasing types")
 client.checkout('main')
 before = time.time()
-after = time.time()
 client.checkout('main')
 client.rebase({"rebase_from": f'{user}/{db}/local/branch/types',
                "author": user,
                "message": "Merging types into main"})
+after = time.time()
 total = (after - before)
 print(f"Rebase took {total} seconds")
 report_total([total])
@@ -187,5 +187,5 @@ print(f"Squash took {total} seconds")
 report_total([total])
 
 commit = result['api:commit']
-print("Branch reset to {commit}")
+print(f"Branch reset to {commit}")
 client.reset(commit)
