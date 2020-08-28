@@ -185,5 +185,5 @@ print(f"Squash took {total} seconds")
 report_total([total])
 
 commit = result['api:commit']
-print("Branch reset to {commit}")
+print(f"Branch reset to {commit}")
 client.reset(commit)
