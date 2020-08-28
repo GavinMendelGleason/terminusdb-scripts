@@ -12,8 +12,8 @@ from terminusdb_client import WOQLQuery as WQ
 # Assumes database already exists.
 
 # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
-#server_url = "https://127.0.0.1:6363"
-server_url = "https://195.201.12.87:6366"
+server_url = "https://127.0.0.1:6363"
+#server_url = "https://195.201.12.87:6366"
 db = "DBpedia_import_rebase_squash_reset"
 db_label = "DBpedia: import/rebase/squash/reset"
 db_comment = "A test of various pipeline operations"
