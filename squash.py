@@ -30,7 +30,7 @@ if len(sys.argv) > 1 and (sys.argv[1] == '-optimize'
 else:
     optimize = False
 
-space = "" if optimize else "  "
+space = "" if optimize else " "
 client = WOQLClient(server_url, insecure=True)
 client.connect(user=user, account=account, key=key, db=db, insecure=True)
 
@@ -56,7 +56,7 @@ client.create_database(db,account,label=db_label,
 
 print("##########################################################")
 print("#                                                        #")
-print(f"# Starting run with optimization == {optimize}{space}              #")
+print(f"# Starting run with optimization == {optimize}{space}                 #")
 print("#                                                        #")
 print("##########################################################")
 print("")
@@ -112,6 +112,8 @@ for f in os.listdir(object_properties_directory):
     total = (after - before)
     times.append(total)
     print(f"Update took {total} seconds")
+print(times)
+report_total(times)
 
 client.branch('types', empty=True)
 client.checkout('types')
